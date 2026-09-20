@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MedAI — Diabetes Risk Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                🧬
+            </div>
+
+            <div>
+                <h2>Med<span>AI</span></h2>
+                <p>Health Intelligence</p>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav>
+
+            <button class="nav-item active" data-section="overview">
+                <span>⌂</span>
+                Overview
+            </button>
+
+            <button class="nav-item" data-section="prediction">
+                <span>✚</span>
+                Risk Prediction
+            </button>
+
+            <button class="nav-item" data-section="analytics">
+                <span>◈</span>
+                Model Analytics
+            </button>
+
+            <button class="nav-item" data-section="history">
+                <span>◷</span>
+                Prediction History
+            </button>
+
+            <button class="nav-item" data-section="about">
+                <span>ⓘ</span>
+                About AI
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-card">
+
+                <div class="system-top">
+                    <div class="online-dot"></div>
+                    <span>System Online</span>
+                </div>
+
+                <p>AI prediction engine is ready.</p>
+
+            </div>
+
+            <div class="version">
+                MedAI v1.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">AI HEALTHCARE / DIABETES</p>
+                <h1 id="pageTitle">Overview</h1>
+            </div>
+
+            <div class="top-actions">
+
+                <div class="status-pill">
+                    <span></span>
+                    API Connected
+                </div>
+
+                <div class="avatar">
+                    AI
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= OVERVIEW ================= -->
+
+        <section class="section active-section" id="overview">
+
+            <div class="hero">
+
+                <div>
+                    <div class="hero-tag">
+                        <span>✦</span>
+                        DEEP LEARNING HEALTH INTELLIGENCE
+                    </div>
+
+                    <h2>
+                        Understand diabetes<br>
+                        <span>risk through AI.</span>
+                    </h2>
+
+                    <p>
+                        An artificial intelligence system that analyzes
+                        clinical parameters and generates an estimated
+                        diabetes risk using a trained neural network.
+                    </p>
+
+                    <button class="primary-btn" onclick="openPrediction()">
+                        Start Risk Assessment
+                        <span>→</span>
+                    </button>
+                </div>
+
+                <div class="hero-orb">
+
+                    <div class="orb-ring ring-one"></div>
+                    <div class="orb-ring ring-two"></div>
+
+                    <div class="orb-core">
+                        <span>AI</span>
+                        <small>ENGINE</small>
+                    </div>
+
+                    <div class="floating-chip chip-one">
+                        <span>●</span> Neural Network
+                    </div>
+
+                    <div class="floating-chip chip-two">
+                        81.3% ROC-AUC
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">◉</div>
+                    <div>
+                        <p>Dataset Records</p>
+                        <h3>768</h3>
+                        <small>Pima Indians Dataset</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon cyan">⌁</div>
+                    <div>
+                        <p>Input Features</p>
+                        <h3>08</h3>
+                        <small>Clinical parameters</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">AI</div>
+                    <div>
+                        <p>ANN Accuracy</p>
+                        <h3>74.0%</h3>
+                        <small>Test set performance</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon pink">↗</div>
+                    <div>
+                        <p>ANN ROC-AUC</p>
+                        <h3>81.3%</h3>
+                        <small>Discrimination metric</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- MAIN DASHBOARD -->
+
+            <div class="dashboard-grid">
+
+                <!-- QUICK ASSESSMENT -->
+
+                <div class="panel assessment-preview">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="panel-label">QUICK ASSESSMENT</p>
+                            <h3>Patient Risk Analysis</h3>
+                        </div>
+
+                        <span class="panel-number">01</span>
+
+                    </div>
+
+                    <div class="parameter-row">
+
+                        <div>
+                            <span>Glucose</span>
+                            <strong id="previewGlucose">120</strong>
+                            <small>mg/dL</small>
+                        </div>
+
+                        <div>
+                            <span>BMI</span>
+                            <strong id="previewBMI">28.5</strong>
+                            <small>kg/m²</small>
+                        </div>
+
+                        <div>
+                            <span>Blood Pressure</span>
+                            <strong id="previewBP">80</strong>
+                            <small>mmHg</small>
+                        </div>
+
+                    </div>
+
+                    <button class="outline-btn" onclick="openPrediction()">
+                        Enter Patient Data
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+
+                <!-- MODEL CARD -->
+
+                <div class="panel model-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="panel-label">PRIMARY MODEL</p>
+                            <h3>Artificial Neural Network</h3>
+                        </div>
+
+                        <div class="model-status">
+                            ACTIVE
+                        </div>
+
+                    </div>
+
+                    <div class="model-visual">
+
+                        <div class="neural-network">
+
+                            <div class="node-column">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+
+                            <div class="connections"></div>
+
+                            <div class="node-column middle">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+
+                            <div class="connections"></div>
+
+                            <div class="node-column">
+                                <i></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="model-footer">
+
+                        <span>TensorFlow / Keras</span>
+                        <strong>ANN</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODEL BENCHMARK -->
+
+            <div class="panel benchmark">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <p class="panel-label">MODEL BENCHMARK</p>
+                        <h3>Performance Overview</h3>
+                    </div>
+
+                    <button class="text-btn" onclick="showSection('analytics')">
+                        View analytics →
+                    </button>
+
+                </div>
+
+                <div class="model-table">
+
+                    <div class="table-row table-header">
+                        <span>MODEL</span>
+                        <span>ACCURACY</span>
+                        <span>PRECISION</span>
+                        <span>RECALL</span>
+                        <span>F1</span>
+                        <span>ROC-AUC</span>
+                    </div>
+
+                    <div class="table-row">
+                        <span class="model-name">
+                            <i class="model-dot ann"></i>
+                            Artificial Neural Network
+                        </span>
+                        <span>74.0%</span>
+                        <span>66.7%</span>
+                        <span>51.9%</span>
+                        <span>58.3%</span>
+                        <span class="highlight">81.3%</span>
+                    </div>
+
+                    <div class="table-row">
+                        <span class="model-name">
+                            <i class="model-dot rf"></i>
+                            Random Forest
+                        </span>
+                        <span>72.1%</span>
+                        <span>58.7%</span>
+                        <span>68.5%</span>
+                        <span>63.2%</span>
+                        <span>82.6%</span>
+                    </div>
+
+                    <div class="table-row">
+                        <span class="model-name">
+                            <i class="model-dot lr"></i>
+                            Logistic Regression
+                        </span>
+                        <span>71.4%</span>
+                        <span>60.9%</span>
+                        <span>51.9%</span>
+                        <span>56.0%</span>
+                        <span>82.3%</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PREDICTION ================= -->
+
+        <section class="section" id="prediction">
+
+            <div class="section-intro">
+
+                <div>
+                    <p class="eyebrow">PATIENT ASSESSMENT</p>
+                    <h2>Diabetes Risk Prediction</h2>
+                    <p>
+                        Enter the patient's clinical parameters to generate
+                        an AI-based risk estimate.
+                    </p>
+                </div>
+
+                <div class="secure-badge">
+                    <span>✓</span>
+                    Local AI Analysis
+                </div>
+
+            </div>
+
+
+            <div class="prediction-layout">
+
+                <!-- FORM -->
+
+                <div class="panel patient-form-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <p class="panel-label">PATIENT PARAMETERS</p>
+                            <h3>Clinical Information</h3>
+                        </div>
+
+                        <span class="panel-number">02</span>
+                    </div>
+
+                    <form id="predictionForm">
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label>Pregnancies</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="pregnancies" min="0" step="1" value="2" required>
+                                    <span>count</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Age</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="age" min="1" max="120" value="25" required>
+                                    <span>years</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Glucose</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="glucose" min="0" step="0.1" value="120" required>
+                                    <span>mg/dL</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Blood Pressure</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="blood_pressure" min="0" step="0.1" value="80" required>
+                                    <span>mmHg</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Skin Thickness</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="skin_thickness" min="0" step="0.1" value="25" required>
+                                    <span>mm</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Insulin</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="insulin" min="0" step="0.1" value="100" required>
+                                    <span>μU/mL</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>BMI</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="bmi" min="0" step="0.1" value="28.5" required>
+                                    <span>kg/m²</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Diabetes Pedigree</label>
+                                <div class="input-wrap">
+                                    <input type="number" id="diabetes_pedigree" min="0" step="0.01" value="0.45" required>
+                                    <span>index</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button type="button" class="clear-btn" onclick="resetForm()">
+                                Reset
+                            </button>
+
+                            <button type="submit" class="primary-btn analyze-btn">
+                                <span id="buttonText">Run AI Analysis</span>
+                                <span>→</span>
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- RESULT -->
+
+                <div class="panel result-panel">
+
+                    <div class="result-header">
+
+                        <div>
+                            <p class="panel-label">AI ANALYSIS</p>
+                            <h3>Risk Estimate</h3>
+                        </div>
+
+                        <div class="ai-pulse">
+                            AI
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-circle">
+
+                        <div class="circle-bg"></div>
+
+                        <svg viewBox="0 0 220 220">
+
+                            <circle
+                                class="circle-track"
+                                cx="110"
+                                cy="110"
+                                r="88">
+                            </circle>
+
+                            <circle
+                                id="riskCircle"
+                                class="circle-progress"
+                                cx="110"
+                                cy="110"
+                                r="88">
+                            </circle>
+
+                        </svg>
+
+                        <div class="risk-value">
+                            <strong id="riskProbability">--</strong>
+                            <span>RISK ESTIMATE</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-result">
+
+                        <div class="risk-status" id="riskStatus">
+                            Awaiting Analysis
+                        </div>
+
+                        <p id="riskMessage">
+                            Enter patient information and run the AI model
+                            to generate a prediction.
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-meta">
+
+                        <div>
+                            <span>MODEL</span>
+                            <strong>ANN</strong>
+                        </div>
+
+                        <div>
+                            <span>THRESHOLD</span>
+                            <strong>0.50</strong>
+                        </div>
+
+                        <div>
+                            <span>ROC-AUC</span>
+                            <strong>81.3%</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="medical-note">
+
+                <span>ⓘ</span>
+
+                <p>
+                    <strong>Research / Educational Use:</strong>
+                    This system provides an AI-based statistical risk estimate
+                    from the trained dataset. It is not a medical diagnosis
+                    and should not replace professional medical evaluation.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+        <section class="section" id="analytics">
+
+            <div class="section-intro">
+
+                <div>
+                    <p class="eyebrow">MODEL INTELLIGENCE</p>
+                    <h2>Model Analytics</h2>
+                    <p>
+                        Comparison of machine learning and deep learning
+                        models evaluated on the test dataset.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <div class="panel metric-large">
+
+                    <p class="panel-label">ANN PERFORMANCE</p>
+
+                    <div class="big-metric">
+                        74.0%
+                        <span>accuracy</span>
+                    </div>
+
+                    <div class="progress-item">
+                        <div>
+                            <span>Accuracy</span>
+                            <strong>74.0%</strong>
+                        </div>
+                        <div class="progress">
+                            <i style="width:74%"></i>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div>
+                            <span>Precision</span>
+                            <strong>66.7%</strong>
+                        </div>
+                        <div class="progress">
+                            <i style="width:66.7%"></i>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div>
+                            <span>Recall</span>
+                            <strong>51.9%</strong>
+                        </div>
+                        <div class="progress">
+                            <i style="width:51.9%"></i>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div>
+                            <span>F1 Score</span>
+                            <strong>58.3%</strong>
+                        </div>
+                        <div class="progress">
+                            <i style="width:58.3%"></i>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div>
+                            <span>ROC-AUC</span>
+                            <strong>81.3%</strong>
+                        </div>
+                        <div class="progress">
+                            <i style="width:81.3%"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="panel comparison-card">
+
+                    <p class="panel-label">MODEL COMPARISON</p>
+
+                    <div class="comparison-model">
+                        <div>
+                            <span class="compare-icon ann">AI</span>
+                            <div>
+                                <strong>ANN</strong>
+                                <small>Deep Learning</small>
+                            </div>
+                        </div>
+                        <b>81.3%</b>
+                    </div>
+
+                    <div class="comparison-model">
+                        <div>
+                            <span class="compare-icon rf">RF</span>
+                            <div>
+                                <strong>Random Forest</strong>
+                                <small>Ensemble Learning</small>
+                            </div>
+                        </div>
+                        <b>82.6%</b>
+                    </div>
+
+                    <div class="comparison-model">
+                        <div>
+                            <span class="compare-icon lr">LR</span>
+                            <div>
+                                <strong>Logistic Regression</strong>
+                                <small>Baseline Model</small>
+                            </div>
+                        </div>
+                        <b>82.3%</b>
+                    </div>
+
+                    <div class="comparison-note">
+                        ROC-AUC values represent the models' performance
+                        on the project's test split.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel pipeline">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <p class="panel-label">AI PIPELINE</p>
+                        <h3>How the prediction works</h3>
+                    </div>
+
+                </div>
+
+                <div class="pipeline-steps">
+
+                    <div class="pipeline-step">
+                        <div>01</div>
+                        <strong>Patient Input</strong>
+                        <span>8 clinical parameters</span>
+                    </div>
+
+                    <i>→</i>
+
+                    <div class="pipeline-step">
+                        <div>02</div>
+                        <strong>Preprocessing</strong>
+                        <span>Median imputation + scaling</span>
+                    </div>
+
+                    <i>→</i>
+
+                    <div class="pipeline-step">
+                        <div>03</div>
+                        <strong>ANN Model</strong>
+                        <span>TensorFlow neural network</span>
+                    </div>
+
+                    <i>→</i>
+
+                    <div class="pipeline-step">
+                        <div>04</div>
+                        <strong>Risk Estimate</strong>
+                        <span>Probability-based output</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <section class="section" id="history">
+
+            <div class="section-intro">
+
+                <div>
+                    <p class="eyebrow">LOCAL RECORDS</p>
+                    <h2>Prediction History</h2>
+                    <p>Your recent assessments are stored locally in this browser.</p>
+                </div>
+
+                <button class="outline-btn small" onclick="clearHistory()">
+                    Clear History
+                </button>
+
+            </div>
+
+            <div class="panel history-panel">
+
+                <div id="historyList">
+
+                    <div class="empty-history">
+                        <div>◷</div>
+                        <h3>No predictions yet</h3>
+                        <p>Your completed AI assessments will appear here.</p>
+                        <button class="primary-btn" onclick="openPrediction()">
+                            Run First Assessment →
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="section" id="about">
+
+            <div class="section-intro">
+
+                <div>
+                    <p class="eyebrow">PROJECT INFORMATION</p>
+                    <h2>About MedAI</h2>
+                    <p>
+                        AI-based diabetes risk prediction using deep learning.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="about-grid">
+
+                <div class="panel about-main">
+
+                    <div class="about-icon">🧬</div>
+
+                    <h3>AI-Based Diabetes Risk Prediction</h3>
+
+                    <p>
+                        MedAI is an academic artificial intelligence project
+                        designed to demonstrate how machine learning and
+                        deep learning techniques can be applied to healthcare
+                        datasets.
+                    </p>
+
+                    <p>
+                        The primary model is an Artificial Neural Network
+                        developed using TensorFlow/Keras. Patient parameters
+                        are standardized before being passed through the
+                        trained network.
+                    </p>
+
+                </div>
+
+                <div class="panel tech-stack">
+
+                    <p class="panel-label">TECHNOLOGY</p>
+
+                    <div class="tech-item">
+                        <span>Python</span>
+                        <b>Backend</b>
+                    </div>
+
+                    <div class="tech-item">
+                        <span>TensorFlow</span>
+                        <b>Deep Learning</b>
+                    </div>
+
+                    <div class="tech-item">
+                        <span>FastAPI</span>
+                        <b>REST API</b>
+                    </div>
+
+                    <div class="tech-item">
+                        <span>JavaScript</span>
+                        <b>Frontend</b>
+                    </div>
+
+                    <div class="tech-item">
+                        <span>Scikit-learn</span>
+                        <b>Preprocessing</b>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            <span>MedAI · AI Healthcare Research Project</span>
+            <span>Not a medical diagnosis</span>
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
