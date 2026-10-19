@@ -1,10 +1,22 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+import csv
+import os
+import sys
+from pathlib import Path
+
 import tensorflow as tf
 import joblib
 import numpy as np
-import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+from nlp_assistant import ask_health_assistant
+
 
 
 # --------------------------------------------------
@@ -35,7 +47,7 @@ app.add_middleware(
 # Load trained model and scaler
 # --------------------------------------------------
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 MODEL_PATH = os.path.join(
     BASE_DIR,
@@ -100,6 +112,81 @@ def predict(data: PatientData):
         data.age
     ]])
 
+    
+# --------------------------------------------------
+# Testing Dataset Verification
+# --------------------------------------------------
+
+TEST_RESULTS_PATH = BASE_DIR / "reports" / "held_out_test_results.csv"
+
+FEATURE_COLUMNS = [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+]
+
+
+@app.get("/test-samples")
+def get_test_samples():
+
+    if not TEST_RESULTS_PATH.exists():
+        return {
+            "status": "error",
+            "message": "Testing results CSV was not found."
+        }
+
+    with open(TEST_RESULTS_PATH, newline="", encoding="utf-8") as file:
+        rows = list(csv.DictReader(file))
+
+    if not rows:
+        return {"status": "error", "message": "No test samples found."}
+
+    # Read the actual test inputs
+    inputs = np.array([
+        [float(row[column]) for column in FEATURE_COLUMNS]
+        for row in rows
+    ])
+
+    actual_outcomes = [
+        int(row["Actual_Outcome"]) for row in rows
+    ]
+
+    # Use the same trained scaler and ANN model
+    scaled_inputs = scaler.transform(inputs)
+    probabilities = model.predict(scaled_inputs, verbose=0).reshape(-1)
+
+    samples = []
+
+    for index, row in enumerate(rows):
+        probability = float(probabilities[index])
+        predicted = int(probability >= 0.5)
+        actual = actual_outcomes[index]
+
+        samples.append({
+            "sample_id": index + 1,
+            "inputs": {
+                column: float(row[column])
+                for column in FEATURE_COLUMNS
+            },
+            "actual_outcome": actual,
+            "probability": round(probability * 100, 2),
+            "predicted_outcome": predicted,
+            "correct": actual == predicted
+        })
+
+    return {
+        "status": "success",
+        "total_samples": len(samples),
+        "model": "Trained ANN",
+        "samples": samples
+    }
+
+
     # Apply the same scaler used during training
     input_scaled = scaler.transform(input_data)
 
@@ -124,3 +211,14 @@ def predict(data: PatientData):
         "result": result,
         "message": "This result is an AI-based risk estimate and is not a medical diagnosis."
     }
+
+
+# Health Assistant Input
+class HealthQuestion(BaseModel):
+    question: str
+
+
+# NLP Health Assistant Endpoint
+@app.post("/health-assistant")
+def health_assistant(data: HealthQuestion):
+    return ask_health_assistant(data.question)

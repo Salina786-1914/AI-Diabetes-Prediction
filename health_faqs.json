@@ -1,0 +1,123 @@
+
+[
+  {
+    "language": "en",
+    "question": "What is diabetes?",
+    "answer": "Diabetes is a condition in which blood glucose levels remain too high. Medical tests are needed for diagnosis."
+  },
+  {
+    "language": "hi",
+    "question": "डायबिटीज क्या है?",
+    "answer": "डायबिटीज एक ऐसी स्थिति है जिसमें खून में शुगर का स्तर ज्यादा रहता है। इसकी पुष्टि के लिए मेडिकल टेस्ट जरूरी हैं।"
+  },
+  {
+    "language": "mr",
+    "question": "मधुमेह म्हणजे काय?",
+    "answer": "मधुमेह ही अशी स्थिती आहे ज्यामध्ये रक्तातील साखरेची पातळी जास्त राहते. निदानासाठी वैद्यकीय चाचण्या आवश्यक असतात."
+  },
+  {
+    "language": "en",
+    "question": "What is normal fasting blood sugar?",
+    "answer": "For non-pregnant adults, fasting blood glucose below 100 mg/dL is generally normal. 100–125 mg/dL is the prediabetes range, while 126 mg/dL or above may indicate diabetes and needs medical confirmation."
+  },
+  {
+    "language": "hi",
+    "question": "खाली पेट शुगर की नॉर्मल रेंज क्या है?",
+    "answer": "गर्भवती नहीं होने वाले वयस्कों में खाली पेट ब्लड शुगर 100 mg/dL से कम सामान्य मानी जाती है। 100–125 mg/dL प्रीडायबिटीज की रेंज है और 126 mg/dL या उससे अधिक होने पर डॉक्टर से जाँच और पुष्टि जरूरी है।"
+  },
+  {
+    "language": "mr",
+    "question": "उपाशीपोटी रक्तातील साखरेची सामान्य पातळी किती असते?",
+    "answer": "गर्भवती नसलेल्या प्रौढांमध्ये उपाशीपोटी रक्तातील साखर 100 mg/dL पेक्षा कमी असणे सामान्य मानले जाते. 100–125 mg/dL ही प्रीडायबिटीजची श्रेणी आहे. 126 mg/dL किंवा त्यापेक्षा जास्त असल्यास वैद्यकीय तपासणी आणि पुष्टी आवश्यक आहे."
+  },
+  {
+    "language": "en",
+    "question": "What is low blood sugar?",
+    "answer": "For many people with diabetes, blood glucose below 70 mg/dL is considered low. Symptoms can include shaking, sweating and confusion."
+  },
+  {
+    "language": "hi",
+    "question": "लो ब्लड शुगर क्या होती है?",
+    "answer": "डायबिटीज वाले कई लोगों में 70 mg/dL से कम ब्लड शुगर को कम माना जाता है। इसके लक्षणों में कंपकंपी, पसीना और भ्रम शामिल हो सकते हैं।"
+  },
+  {
+    "language": "mr",
+    "question": "रक्तातील साखर कमी म्हणजे काय?",
+    "answer": "मधुमेह असलेल्या अनेक लोकांमध्ये 70 mg/dL पेक्षा कमी रक्तातील साखर कमी मानली जाते. थरथर, घाम येणे आणि गोंधळ होणे अशी लक्षणे दिसू शकतात."
+  },
+  {
+    "language": "en",
+    "question": "What is normal blood pressure?",
+    "answer": "For adults, blood pressure below 120/80 mmHg is generally considered normal. Repeated measurements and clinical assessment are needed to assess high blood pressure."
+  },
+  {
+    "language": "hi",
+    "question": "ब्लड प्रेशर की नॉर्मल रेंज क्या है?",
+    "answer": "वयस्कों में 120/80 mmHg से कम ब्लड प्रेशर सामान्य माना जाता है। हाई ब्लड प्रेशर का आकलन करने के लिए बार-बार माप और डॉक्टर की सलाह जरूरी है।"
+  },
+  {
+    "language": "mr",
+    "question": "रक्तदाबाची सामान्य पातळी किती असते?",
+    "answer": "प्रौढांमध्ये 120/80 mmHg पेक्षा कमी रक्तदाब सामान्य मानला जातो. उच्च रक्तदाब तपासण्यासाठी वारंवार मोजमाप आणि डॉक्टरांचा सल्ला आवश्यक आहे."
+  },
+  {
+    "language": "en",
+    "question": "What is BMI?",
+    "answer": "BMI stands for Body Mass Index. It is calculated by dividing weight in kilograms by height in metres squared. It is a screening measure, not a diagnosis."
+  },
+  {
+    "language": "hi",
+    "question": "BMI क्या होता है?",
+    "answer": "BMI का मतलब बॉडी मास इंडेक्स है। इसे वजन (किलोग्राम) को लंबाई (मीटर) के वर्ग से भाग देकर निकाला जाता है। यह केवल स्क्रीनिंग का तरीका है, बीमारी का निदान नहीं।"
+  },
+  {
+    "language": "mr",
+    "question": "BMI म्हणजे काय?",
+    "answer": "BMI म्हणजे बॉडी मास इंडेक्स. वजन (किलोग्रॅम) ला उंचीच्या (मीटर) वर्गाने भाग देऊन तो काढला जातो. हे आरोग्य तपासणीचे एक साधन आहे, निदान नाही."
+  },
+  {
+    "language": "en",
+    "question": "What are common symptoms of diabetes?",
+    "answer": "Possible symptoms include increased thirst, frequent urination, tiredness and blurred vision. Some people may have no symptoms."
+  },
+  {
+    "language": "hi",
+    "question": "डायबिटीज के लक्षण क्या हैं?",
+    "answer": "संभावित लक्षणों में ज्यादा प्यास लगना, बार-बार पेशाब आना, थकान और धुंधला दिखना शामिल हैं। कुछ लोगों में कोई लक्षण नहीं होते।"
+  },
+  {
+    "language": "mr",
+    "question": "मधुमेहाची लक्षणे कोणती?",
+    "answer": "जास्त तहान लागणे, वारंवार लघवी होणे, थकवा आणि धूसर दिसणे ही संभाव्य लक्षणे आहेत. काही लोकांमध्ये कोणतीही लक्षणे दिसत नाहीत."
+  },
+  {
+    "language": "en",
+    "question": "Can this AI diagnose diabetes?",
+    "answer": "No. This academic application provides an AI-based risk estimate, not a medical diagnosis. Consult a qualified healthcare professional for testing and diagnosis."
+  },
+  {
+    "language": "hi",
+    "question": "क्या यह AI डायबिटीज का पक्का निदान कर सकता है?",
+    "answer": "नहीं। यह शैक्षणिक एप्लिकेशन केवल AI आधारित जोखिम का अनुमान देता है, मेडिकल निदान नहीं। जाँच और निदान के लिए योग्य डॉक्टर से सलाह लें।"
+  },
+  {
+    "language": "mr",
+    "question": "हे AI मधुमेहाचे निश्चित निदान करू शकते का?",
+    "answer": "नाही. हे शैक्षणिक अॅप्लिकेशन AI आधारित जोखमीचा अंदाज देते, वैद्यकीय निदान नाही. तपासणी आणि निदानासाठी पात्र डॉक्टरांचा सल्ला घ्या."
+  },
+  {
+    "language": "en",
+    "question": "How can diabetes risk be reduced?",
+    "answer": "Balanced meals, regular physical activity, appropriate weight management and recommended health checkups may help reduce type 2 diabetes risk."
+  },
+  {
+    "language": "hi",
+    "question": "डायबिटीज का खतरा कैसे कम कर सकते हैं?",
+    "answer": "संतुलित भोजन, नियमित शारीरिक गतिविधि, उचित वजन बनाए रखना और समय पर स्वास्थ्य जाँच टाइप 2 डायबिटीज का खतरा कम करने में मदद कर सकते हैं।"
+  },
+  {
+    "language": "mr",
+    "question": "मधुमेहाचा धोका कसा कमी करता येईल?",
+    "answer": "संतुलित आहार, नियमित शारीरिक हालचाल, योग्य वजन राखणे आणि वेळेवर आरोग्य तपासणी यामुळे टाइप 2 मधुमेहाचा धोका कमी करण्यास मदत होऊ शकते."
+  }
+]
