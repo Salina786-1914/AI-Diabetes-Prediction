@@ -1,0 +1,38 @@
+
+AI-BASED DIABETES RISK PREDICTION
+MODEL TESTING REPORT
+
+1. Testing Overview
+Model: Artificial Neural Network (ANN)
+Dataset: Pima Indians Diabetes Dataset
+Total test samples: 154
+Classification threshold: 0.5
+
+2. Performance Metrics
+Accuracy: 74.03%
+Precision: 66.67%
+Recall: 51.85%
+F1 Score: 58.33%
+
+3. Confusion Matrix
+                    Predicted 0   Predicted 1
+Actual 0                 86            14
+Actual 1                 26            28
+
+4. Result Analysis
+The model correctly classified 114 out of 154
+test samples, giving an accuracy of 74.03%.
+
+The model correctly identified 28 out of 54
+diabetes-positive samples. It missed 26 positive
+samples, indicating that recall needs improvement.
+
+5. Conclusion
+The ANN model demonstrates moderate classification
+performance on the evaluated test split. Further
+validation and improvement are needed before any
+real-world medical use.
+
+Note:
+This project is for educational purposes only and
+does not provide a medical diagnosis.
