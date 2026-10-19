@@ -1,3 +1,4 @@
+
 import csv
 import os
 import sys
@@ -18,21 +19,11 @@ if str(BASE_DIR) not in sys.path:
 from nlp_assistant import ask_health_assistant
 
 
-
-# --------------------------------------------------
-# FastAPI App
-# --------------------------------------------------
-
 app = FastAPI(
     title="AI Diabetes Risk Prediction API",
     description="Deep learning based diabetes risk prediction system",
     version="1.0"
 )
-
-
-# --------------------------------------------------
-# CORS
-# --------------------------------------------------
 
 app.add_middleware(
     CORSMiddleware,
@@ -42,35 +33,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# --------------------------------------------------
-# Load trained model and scaler
-# --------------------------------------------------
-
-
-
-MODEL_PATH = os.path.join(
-    BASE_DIR,
-    "model",
-    "diabetes_ann.keras"
-)
-
-SCALER_PATH = os.path.join(
-    BASE_DIR,
-    "model",
-    "scaler.pkl"
-)
+MODEL_PATH = BASE_DIR / "model" / "diabetes_ann.keras"
+SCALER_PATH = BASE_DIR / "model" / "scaler.pkl"
 
 model = tf.keras.models.load_model(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 
 
-# --------------------------------------------------
-# Patient Input Schema
-# --------------------------------------------------
+# ================= PATIENT INPUT =================
 
 class PatientData(BaseModel):
-
     pregnancies: float
     glucose: float
     blood_pressure: float
@@ -81,26 +53,20 @@ class PatientData(BaseModel):
     age: float
 
 
-# --------------------------------------------------
-# Home Route
-# --------------------------------------------------
+# ================= HOME =================
 
 @app.get("/")
 def home():
-
     return {
         "message": "AI Diabetes Risk Prediction API is running",
         "status": "success"
     }
 
 
-# --------------------------------------------------
-# Prediction Route
-# --------------------------------------------------
+# ================= DIABETES PREDICTION =================
 
 @app.post("/predict")
 def predict(data: PatientData):
-
     input_data = np.array([[
         data.pregnancies,
         data.glucose,
@@ -112,12 +78,36 @@ def predict(data: PatientData):
         data.age
     ]])
 
-    
-# --------------------------------------------------
-# Testing Dataset Verification
-# --------------------------------------------------
+    input_scaled = scaler.transform(input_data)
 
-TEST_RESULTS_PATH = BASE_DIR / "reports" / "held_out_test_results.csv"
+    probability = float(
+        model.predict(input_scaled, verbose=0)[0][0]
+    )
+
+    prediction = 1 if probability >= 0.5 else 0
+
+    result = (
+        "Higher Predicted Risk"
+        if prediction == 1
+        else "Lower Predicted Risk"
+    )
+
+    return {
+        "prediction": prediction,
+        "probability": round(probability * 100, 2),
+        "result": result,
+        "message": (
+            "This result is an AI-based risk estimate "
+            "and is not a medical diagnosis."
+        )
+    }
+
+
+# ================= TEST SAMPLE VERIFICATION =================
+
+TEST_RESULTS_PATH = (
+    BASE_DIR / "reports" / "held_out_test_results.csv"
+)
 
 FEATURE_COLUMNS = [
     "Pregnancies",
@@ -133,20 +123,25 @@ FEATURE_COLUMNS = [
 
 @app.get("/test-samples")
 def get_test_samples():
-
     if not TEST_RESULTS_PATH.exists():
         return {
             "status": "error",
             "message": "Testing results CSV was not found."
         }
 
-    with open(TEST_RESULTS_PATH, newline="", encoding="utf-8") as file:
+    with open(
+        TEST_RESULTS_PATH,
+        newline="",
+        encoding="utf-8"
+    ) as file:
         rows = list(csv.DictReader(file))
 
     if not rows:
-        return {"status": "error", "message": "No test samples found."}
+        return {
+            "status": "error",
+            "message": "No test samples found."
+        }
 
-    # Read the actual test inputs
     inputs = np.array([
         [float(row[column]) for column in FEATURE_COLUMNS]
         for row in rows
@@ -156,9 +151,12 @@ def get_test_samples():
         int(row["Actual_Outcome"]) for row in rows
     ]
 
-    # Use the same trained scaler and ANN model
     scaled_inputs = scaler.transform(inputs)
-    probabilities = model.predict(scaled_inputs, verbose=0).reshape(-1)
+
+    probabilities = model.predict(
+        scaled_inputs,
+        verbose=0
+    ).reshape(-1)
 
     samples = []
 
@@ -187,38 +185,12 @@ def get_test_samples():
     }
 
 
-    # Apply the same scaler used during training
-    input_scaled = scaler.transform(input_data)
+# ================= HEALTH ASSISTANT =================
 
-    # ANN prediction
-    probability = float(
-        model.predict(input_scaled, verbose=0)[0][0]
-    )
-
-    # Current classification threshold
-    threshold = 0.5
-
-    prediction = 1 if probability >= threshold else 0
-
-    if prediction == 1:
-        result = "Higher Predicted Risk"
-    else:
-        result = "Lower Predicted Risk"
-
-    return {
-        "prediction": prediction,
-        "probability": round(probability * 100, 2),
-        "result": result,
-        "message": "This result is an AI-based risk estimate and is not a medical diagnosis."
-    }
-
-
-# Health Assistant Input
 class HealthQuestion(BaseModel):
     question: str
 
 
-# NLP Health Assistant Endpoint
 @app.post("/health-assistant")
 def health_assistant(data: HealthQuestion):
     return ask_health_assistant(data.question)
